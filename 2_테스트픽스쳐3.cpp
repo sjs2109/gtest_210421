@@ -41,6 +41,13 @@ protected:
 	}
 };
 
+// xUnit Test Pattern에서 테스트 케이스를 구성하는 방법.
+//  => Four Phase Test Pattern(4단계 테스트 패턴)
+//  1단계: 테스트 픽스쳐를 설치하거나 실제 결과를 관찰하기 위해서 필요한 것을 집어넣는 작업을 한다. - SetUp()
+//  2단계: SUT와 상호작용한다.  - TestBody()
+//  3단계: 기대 결과를 단언한다.- TestBody()
+//  4단계: 테스트 픽스쳐를 해체해서 테스트 시작 이전의 상태로 돌려놓는다. - TearDown()
+
 TEST_F(CalculatorTest, PressPlus_2Plus2_Display4) {
 	SPEC("2 더하기 2는 4가 나오는지 검증한다.\n");
 	// Act
