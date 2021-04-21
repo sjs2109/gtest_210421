@@ -1,0 +1,29 @@
+// 5_GoogleTest.cpp
+#include <gtest/gtest.h>
+#include <string>
+
+// 1. 단언문
+//   ASSERT_XX : EQ, TRUE / FALSE, LT, GT, LE, GE ...
+//    -> 하나의 단언문의 실패하면, 이후의 코드는 수행되지 않습니다.
+//    -> "죽은 단언문"
+//     : 하나의 테스트케이스 안에 최소한의 단언문을 사용하는 것이 좋다.
+//       => 여러개의 테스트케이스를 만들어야 한다.
+//   => 구글 테스트는 위의 문제를 해결하기 위한 단언 매크로를 제공합니다.
+//   
+//   EXPECT_XX : EQ, TRUE / FALSE, LT, GT, LE, GE ...
+//    : 단언문이 실패하더라도 이후의 코드는 계속 수행됩니다.
+//      하나의 단언문이 실패한다면, 테스트의 결과는 실패가 됩니다.
+int foo() { return 0;  }
+int goo() { return -1; }
+
+TEST(GoogleTest, Sample1) {
+	int expected = 42;
+
+	int actual1 = foo();
+	int actual2 = goo();
+
+	// ASSERT_EQ(actual1, expected);
+	// ASSERT_EQ(actual2, expected);
+	EXPECT_EQ(actual1, expected);
+	EXPECT_EQ(actual2, expected);
+}
