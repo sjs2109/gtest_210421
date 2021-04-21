@@ -56,6 +56,59 @@ public:
 	void PressEquals() {}
 };
 
+//-------------------
+// calculator.h / calculator.cpp
+// - spec/calculator.spec.cpp
+// - test/calculator.test.cpp
+
+// TestSuite 이름
+// : 테스트 대상 클래스의 마지막에 Test / Spec 이름을 붙입니다.
+// => CalculatorTest / CalculatorSpec
+
+
+// 3A: TC를 구성하는 방법
+// 1. Arrange: 객체를 생성하고, 필요한 경우 설정하고 준비한다.
+// 2. Act: 객체를 작용을 가한다.
+// 3. Assert: 기대하는 바를 단언한다.
+
+TEST(CalculatorTest, Plus) {
+	// Arrange
+	Calculator* calc = new Calculator();
+
+	// Act
+	calc->Enter(2);
+	calc->PressPlus();
+	calc->Enter(2);
+	calc->PressEquals();
+
+	// Assert
+	if (calc->Display() != 4) {
+		FAIL();
+	} else {
+		SUCCEED();
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
