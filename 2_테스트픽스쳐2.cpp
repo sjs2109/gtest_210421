@@ -1,8 +1,7 @@
 // 2_테스트픽스쳐.cpp
-
 class Calculator {
 public:
-	Calculator(int n) {}
+	// Calculator(int n) {}
 
 	double Display() { return 0; }
 	
@@ -16,25 +15,28 @@ public:
 #include <gtest/gtest.h>
 #define SPEC printf
 
-// Test Fixture
-//  정의: xUnit Test Pattern에서는 SUT를 실행하기 위해서 준비해야 하는 모든 작업을 
-//        테스트 픽스쳐 라고 합니다.
-//        픽스쳐를 구성하는 모든 로직 부분을 "픽스쳐를 설치한다" 라고 합니다.
-
 // 픽스쳐 설치하는 방법.
-//  1. Inline Fixture Setup
-//    : 모든 픽스쳐 설치를 테스트 케이스 안에서 수행한다.
-//    장점:  픽스쳐를 설치하는 과정과 검증 로직이 테스트 함수 안에 존재하기 때문에
-//           인과관계를 쉽게 분석할 수 있다.
-//    단점:  모든 테스트 코드 안에서 '테스트 코드 중복'이 발생합니다.
+//  2. Delegate SetUp(위임 설치)
+//    : 테스트 케이스 안에서 발생하는 픽스쳐 설치에 대한 코드를 별도 테스트 유틸리티 함수를 통해 모듈화한다.
+//     => 명시적인 테스트 스위트가 필요합니다.
 
-//  테스트 냄새(Test Smells)
-//   : 테스트 코드의 유지보수를 어렵게 만드는 요소 
+//  테스트케이스를 만드는 매크로
+//   1) TEST: 암묵적인 테스트 스위트를 사용합니다.
 
-TEST(CalculatorTest, PressPlus_2Plus2_Display4) {
+
+// 적용 방법.
+//  1. 테스트 스위트 클래스를 만듭니다.
+class CalculatorTest : public testing::Test {
+public:
+	Calculator* Create() { return new Caluclator(); }
+};
+
+
+//  2. TEST_F 매크로를 이용해서 테스트 케이스를 만듭니다.
+TEST_F(CalculatorTest, PressPlus_2Plus2_Display4) {
 	SPEC("2 더하기 2는 4가 나오는지 검증한다.\n");
 	// Arrange
-	Calculator* calc = new Calculator();
+	Calculator* calc = Create();
 
 	// Act
 	calc->Enter(2);
@@ -46,9 +48,9 @@ TEST(CalculatorTest, PressPlus_2Plus2_Display4) {
 	ASSERT_EQ(calc->Display(), 4) << "2 + 2 하였을 때";
 }
 
-TEST(CalculatorTest, Plus) {
+TEST_F(CalculatorTest, Plus) {
 	// Arrange
-	Calculator* calc = new Calculator();
+	Calculator* calc = Create();
 
 	// Act
 	calc->Enter(2);
