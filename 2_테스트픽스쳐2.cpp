@@ -49,8 +49,8 @@ public:
 // 적용 방법.
 //  1. 테스트 스위트 클래스를 만듭니다.
 class CalculatorTest : public testing::Test {
+// private: - X
 // public:
-// private:
 protected:
 	// 주의사항: 테스트케이스 안에서 테스트스위트 클래스에 정의된 함수에 접근하기 위해서는 
 	//           protected 이상 이어야 합니다.

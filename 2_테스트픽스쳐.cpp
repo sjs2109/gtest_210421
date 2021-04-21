@@ -2,7 +2,7 @@
 
 class Calculator {
 public:
-	Calculator(int n) {}
+	// Calculator(int n) {}
 
 	double Display() { return 0; }
 	
