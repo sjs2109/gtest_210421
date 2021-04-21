@@ -66,6 +66,7 @@ public:
 // => CalculatorTest / CalculatorSpec
 
 
+#include <gtest/gtest.h>
 // 3A: TC를 구성하는 방법
 // 1. Arrange: 객체를 생성하고, 필요한 경우 설정하고 준비한다.
 // 2. Act: 객체를 작용을 가한다.
