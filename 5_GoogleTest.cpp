@@ -3,7 +3,7 @@
 #include <string>
 
 // 1. 단언문
-//   ASSERT_XX : EQ, TRUE / FALSE, LT, GT, LE, GE ...
+//   ASSERT_XX : EQ, NE, TRUE / FALSE, LT, GT, LE, GE ...
 //    -> 하나의 단언문의 실패하면, 이후의 코드는 수행되지 않습니다.
 //    -> "죽은 단언문"
 //     : 하나의 테스트케이스 안에 최소한의 단언문을 사용하는 것이 좋다.
@@ -141,6 +141,19 @@ TEST(TestSuiteD, TestA) {}
 TEST(TestSuiteA, TestB) {}
 TEST(TestSuiteB, TestB) {}
 TEST(TestSuiteC, TestB) {}
+
+// 8. Test Result Formatter
+//   $ ./a.out --gtest_output=[xml|json]:/path/output.xml
+//
+//   xml: test_details.xml  -> xUnit Test Framework
+//  json: test_details.json -> Google Test
+
+
+// 9. 추가적인 정보도 기록할 수 있습니다.
+TEST(GoogleTest, Sample9) {
+	RecordProperty("cpu", "1.5");  // !
+	RecordProperty("mem", "512m"); // !
+}
 
 
 

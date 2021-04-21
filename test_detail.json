@@ -1,0 +1,226 @@
+{
+  "tests": 17,
+  "failures": 0,
+  "disabled": 4,
+  "errors": 0,
+  "timestamp": "2021-04-21T23:37:40Z",
+  "time": "0s",
+  "name": "AllTests",
+  "testsuites": [
+    {
+      "name": "GoogleTest",
+      "tests": 6,
+      "failures": 0,
+      "disabled": 1,
+      "errors": 0,
+      "timestamp": "2021-04-21T23:37:40Z",
+      "time": "0s",
+      "testsuite": [
+        {
+          "name": "DISABLED_Sample1",
+          "status": "NOTRUN",
+          "result": "SUPPRESSED",
+          "timestamp": "1970-01-01T00:00:00Z",
+          "time": "0s",
+          "classname": "GoogleTest"
+        },
+        {
+          "name": "Sample2",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "GoogleTest"
+        },
+        {
+          "name": "Sample3",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "GoogleTest"
+        },
+        {
+          "name": "Sample4",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "GoogleTest"
+        },
+        {
+          "name": "Sample6",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "GoogleTest"
+        },
+        {
+          "name": "Sample9",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "GoogleTest",
+          "cpu": "1.5",
+          "mem": "512m"
+        }
+      ]
+    },
+    {
+      "name": "SampleTest",
+      "tests": 2,
+      "failures": 0,
+      "disabled": 1,
+      "errors": 0,
+      "timestamp": "2021-04-21T23:37:40Z",
+      "time": "0s",
+      "testsuite": [
+        {
+          "name": "DISABLED_TestA",
+          "status": "NOTRUN",
+          "result": "SUPPRESSED",
+          "timestamp": "1970-01-01T00:00:00Z",
+          "time": "0s",
+          "classname": "SampleTest"
+        },
+        {
+          "name": "TestB",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "SampleTest"
+        }
+      ]
+    },
+    {
+      "name": "DISABLED_HelloTest",
+      "tests": 2,
+      "failures": 0,
+      "disabled": 2,
+      "errors": 0,
+      "timestamp": "1970-01-01T00:00:00Z",
+      "time": "0s",
+      "testsuite": [
+        {
+          "name": "TestA",
+          "status": "NOTRUN",
+          "result": "SUPPRESSED",
+          "timestamp": "1970-01-01T00:00:00Z",
+          "time": "0s",
+          "classname": "DISABLED_HelloTest"
+        },
+        {
+          "name": "TestB",
+          "status": "NOTRUN",
+          "result": "SUPPRESSED",
+          "timestamp": "1970-01-01T00:00:00Z",
+          "time": "0s",
+          "classname": "DISABLED_HelloTest"
+        }
+      ]
+    },
+    {
+      "name": "TestSuiteA",
+      "tests": 2,
+      "failures": 0,
+      "disabled": 0,
+      "errors": 0,
+      "timestamp": "2021-04-21T23:37:40Z",
+      "time": "0s",
+      "testsuite": [
+        {
+          "name": "TestA",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "TestSuiteA"
+        },
+        {
+          "name": "TestB",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "TestSuiteA"
+        }
+      ]
+    },
+    {
+      "name": "TestSuiteB",
+      "tests": 2,
+      "failures": 0,
+      "disabled": 0,
+      "errors": 0,
+      "timestamp": "2021-04-21T23:37:40Z",
+      "time": "0s",
+      "testsuite": [
+        {
+          "name": "TestA",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "TestSuiteB"
+        },
+        {
+          "name": "TestB",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "TestSuiteB"
+        }
+      ]
+    },
+    {
+      "name": "TestSuiteC",
+      "tests": 2,
+      "failures": 0,
+      "disabled": 0,
+      "errors": 0,
+      "timestamp": "2021-04-21T23:37:40Z",
+      "time": "0s",
+      "testsuite": [
+        {
+          "name": "TestA",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "TestSuiteC"
+        },
+        {
+          "name": "TestB",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "TestSuiteC"
+        }
+      ]
+    },
+    {
+      "name": "TestSuiteD",
+      "tests": 1,
+      "failures": 0,
+      "disabled": 0,
+      "errors": 0,
+      "timestamp": "2021-04-21T23:37:40Z",
+      "time": "0s",
+      "testsuite": [
+        {
+          "name": "TestA",
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2021-04-21T23:37:40Z",
+          "time": "0s",
+          "classname": "TestSuiteD"
+        }
+      ]
+    }
+  ]
+}
