@@ -79,7 +79,9 @@ public:
 
 // 테스트 코드 품질
 // 1. 가독성
+//  : 테스트 이름 / 테스트 실패 메세지
 // 2. 유지보수성
+//  : 테스트 케이스 안에서 제어 구문(조건문, 반복문, 예외 처리 등)의 발생을 최소화 해야 한다.
 // 3. 신뢰성
 
 #define SPEC printf
@@ -98,12 +100,15 @@ TEST(CalculatorTest, PressPlus_2Plus2_Display4) {
 	calc->PressEquals();
 
 	// Assert
+	ASSERT_EQ(calc->Display(), 4) << "2 + 2 하였을 때";
+#if 0
 	if (calc->Display() != 4) {
 		// 실패가 발생한 원인을 명시해야 한다.
 		FAIL() << "result: " << calc->Display() << " - 2 + 2 하였을 때"; 
 	} else {
 		SUCCEED();
 	}
+#endif
 }
 
 TEST(CalculatorTest, Plus) {
