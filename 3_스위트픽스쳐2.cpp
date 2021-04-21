@@ -57,24 +57,32 @@ protected:
 	// 1.10 이후
 	static void SetUpTestSuite() {
 		printf("SetUpTestSuite\n");
-	}
-	static void TearDownTestSuite() {
-		printf("TearDownTestSuite\n");
-	}
-
-	Database* database;
-	DatabaseTest() : database(nullptr) {}
-
-	void SetUp() override {
 		database = new Database;
 		database->Connect();
 	}
-
-	void TearDown() override {
+	static void TearDownTestSuite() {
+		printf("TearDownTestSuite\n");
 		database->Disconnect();
 		delete database;
 	}
+
+	static Database* database;
+	// DatabaseTest() : database(nullptr) {}
+
+	void SetUp() override {
+		// database = new Database;
+		// database->Connect();
+	}
+
+	void TearDown() override {
+		// database->Disconnect();
+		// delete database;
+	}
 };
+
+Database* DatabaseTest::database = nullptr;
+
+
 
 TEST_F(DatabaseTest, Login) {
 	database->Login("test_id", "test_password");
