@@ -26,7 +26,12 @@ public:
 class CalculatorTest : public testing::Test {
 protected:
 	Calculator* calc;
-	CalculatorTest() : calc(nullptr) {}
+	CalculatorTest() : calc(nullptr) {
+		printf("CalculatorTest()\n");
+	}
+	~CalculatorTest() {
+		printf("~CalculatorTest()\n");
+	}
 
 	// virtual void SetUp() {
 	void SetUp() override {
@@ -35,7 +40,7 @@ protected:
 	}
 
 	void TearDown() override {
-		printf("TearDown\n");
+		printf("TearDown()\n");
 		delete calc;
 		calc = nullptr;
 	}
@@ -47,6 +52,25 @@ protected:
 //  2단계: SUT와 상호작용한다.  - TestBody()
 //  3단계: 기대 결과를 단언한다.- TestBody()
 //  4단계: 테스트 픽스쳐를 해체해서 테스트 시작 이전의 상태로 돌려놓는다. - TearDown()
+
+// xUnit Test Framework이 테스트를 실행하는 흐름
+//  - Test Runner
+//    : RUN_ALL_TESTS();
+//    => 신선한 픽스쳐 전략
+//      : 픽스쳐가 망가지더라도, 이후의 테스트에 신뢰성에 영향을 주지 않는다.
+//
+//	  CalculatorTest* ts = new CalculatorTest;
+//	  ts->SetUp();
+//	  ts->Plus();
+//	  ts->TearDown();
+//	  delete ts;
+//
+//	  CalculatorTest* ts = new CalculatorTest;
+//	  ts->SetUp();
+//	  ts->Plus2();
+//	  ts->TearDown();
+//	  delete ts;
+
 
 TEST_F(CalculatorTest, PressPlus_2Plus2_Display4) {
 	SPEC("2 더하기 2는 4가 나오는지 검증한다.\n");
