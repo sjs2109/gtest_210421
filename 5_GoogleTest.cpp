@@ -61,6 +61,49 @@ TEST(GoogleTest, Sample3) {
 	EXPECT_NEAR(a, b, 0.000000000);
 }
 
+// Coverage: 테스트 코드를 통해 수행된 제품 코드의 비율을 측정
+void IsValidFilename(const std::string& filename) {
+	if (filename.empty()) {
+		// throw std::invalid_argument("filename is empty!");
+		// throw 1;
+	}
+
+	// ...
+}
+
+// IsValidFilename 빈 문자열을 전달하였을 경우, invalid_argument 예외가 제대로 발생하는지 여부를 검증하고 싶다.
+// 4. 예외 검증
+//  - EXPECT_THROW
+//  - EXPECT_ANY_THROW
+//
+TEST(GoogleTest, Sample4) {
+	std::string emptyFilename = "";
+
+	EXPECT_THROW(IsValidFilename(emptyFilename), std::invalid_argument) << "빈 문자열을 전달하였을 때";
+	EXPECT_ANY_THROW(IsValidFilename(emptyFilename));
+}
+#if 0
+TEST(GoogleTest, Sample4) {
+	std::string emptyFilename = "";
+
+	try {
+		IsValidFilename(emptyFilename);
+		FAIL() << "예외가 발생하지 않았습니다.";
+	} catch (std::invalid_argument&) {
+		SUCCEED();
+	} catch (...) {
+		FAIL() << "다른 종류의 예외가 발생하였습니다.";
+	}
+}
+#endif
+
+
+
+
+
+
+
+
 
 
 
