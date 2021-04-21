@@ -66,11 +66,45 @@ public:
 // => CalculatorTest / CalculatorSpec
 
 
+// TDD(Test Driven Development) vs BDD(Behavior Driven Development)
+//  1. 용어적인 차이
+//    : 사람의 구어체와 유사한 형태를 권장합니다.
+//  2. 행위 기반 검증
+
 #include <gtest/gtest.h>
 // 3A: TC를 구성하는 방법
-// 1. Arrange: 객체를 생성하고, 필요한 경우 설정하고 준비한다.
-// 2. Act: 객체를 작용을 가한다.
-// 3. Assert: 기대하는 바를 단언한다.
+// 1. Arrange(Given): 객체를 생성하고, 필요한 경우 설정하고 준비한다.
+// 2. Act(When): 객체를 작용을 가한다.
+// 3. Assert(Then): 기대하는 바를 단언한다.
+
+// 테스트 코드 품질
+// 1. 가독성
+// 2. 유지보수성
+// 3. 신뢰성
+
+#define SPEC printf
+
+// 테스트의 이름이 어떤 테스트를 수행하는지 드러날 수 있도록 하는 것이 좋습니다.
+// - ex) 테스트대상함수_시나리오_기대값
+TEST(CalculatorTest, PressPlus_2Plus2_Display4) {
+	SPEC("2 더하기 2는 4가 나오는지 검증한다.\n");
+	// Arrange
+	Calculator* calc = new Calculator();
+
+	// Act
+	calc->Enter(2);
+	calc->PressPlus();
+	calc->Enter(2);
+	calc->PressEquals();
+
+	// Assert
+	if (calc->Display() != 4) {
+		// 실패가 발생한 원인을 명시해야 한다.
+		FAIL() << "result: " << calc->Display() << " - 2 + 2 하였을 때"; 
+	} else {
+		SUCCEED();
+	}
+}
 
 TEST(CalculatorTest, Plus) {
 	// Arrange
