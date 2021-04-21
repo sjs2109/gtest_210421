@@ -16,7 +16,7 @@
 int foo() { return 0;  }
 int goo() { return -1; }
 
-TEST(GoogleTest, Sample1) {
+TEST(GoogleTest, DISABLED_Sample1) {
 	int expected = 42;
 
 	int actual1 = foo();
@@ -39,7 +39,7 @@ TEST(GoogleTest, Sample2) {
 	std::string s2 = "hello";
 
 	const char* s3 = s2.c_str();
-	const char* s4 = "Hello";
+	const char* s4 = "hello";
 
 	EXPECT_EQ(s1, s2);
 	// EXPECT_EQ(s3, s4);
@@ -58,13 +58,13 @@ TEST(GoogleTest, Sample3) {
 
 	// EXPECT_EQ(a, b);
 	EXPECT_DOUBLE_EQ(a, b); // 4ULP's
-	EXPECT_NEAR(a, b, 0.000000000);
+	EXPECT_NEAR(a, b, 0.0000000001);
 }
 
 // Coverage: 테스트 코드를 통해 수행된 제품 코드의 비율을 측정
 void IsValidFilename(const std::string& filename) {
 	if (filename.empty()) {
-		// throw std::invalid_argument("filename is empty!");
+		throw std::invalid_argument("filename is empty!");
 		// throw 1;
 	}
 
@@ -75,7 +75,6 @@ void IsValidFilename(const std::string& filename) {
 // 4. 예외 검증
 //  - EXPECT_THROW
 //  - EXPECT_ANY_THROW
-//
 TEST(GoogleTest, Sample4) {
 	std::string emptyFilename = "";
 
@@ -97,6 +96,23 @@ TEST(GoogleTest, Sample4) {
 }
 #endif
 
+// 5. 테스트 비활성화
+//  = 테스트 케이스를 주석 처리하면 "잊혀진 테스트"가 됩니다.
+//  => 비활성화된 테스트가 존재한다는 사실을 알려준다.
+//
+//    TEST_F(DISABLED_TestSuiteName, DISABLED_TestCaseName)
+//     => TestSuite 의 이름이 DISABLED_ 로 되어 있거나
+//        TestCase의 이름이 DISABLED_로 되어 있으면 됩니다.
+
+TEST(SampleTest, DISABLED_TestA) {
+}
+
+TEST(SampleTest, TestB) {
+}
+
+class DISABLED_HelloTest : public testing::Test {};
+TEST_F(DISABLED_HelloTest, TestA) {}
+TEST_F(DISABLED_HelloTest, TestB) {}
 
 
 
