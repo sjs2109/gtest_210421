@@ -103,6 +103,9 @@ TEST(GoogleTest, Sample4) {
 //    TEST_F(DISABLED_TestSuiteName, DISABLED_TestCaseName)
 //     => TestSuite 의 이름이 DISABLED_ 로 되어 있거나
 //        TestCase의 이름이 DISABLED_로 되어 있으면 됩니다.
+//
+//     : 비활성화된 테스트를 구동하는 방법.
+//     $ ./a.out --gtest_also_run_disabled_tests
 
 TEST(SampleTest, DISABLED_TestA) {
 }
@@ -113,6 +116,36 @@ TEST(SampleTest, TestB) {
 class DISABLED_HelloTest : public testing::Test {};
 TEST_F(DISABLED_HelloTest, TestA) {}
 TEST_F(DISABLED_HelloTest, TestB) {}
+
+// 6. 반복 테스트
+//  $ ./a.out --gtest_repeat=100 --gtest_break_on_failure --gtest_shuffle
+//   : "변덕스러운 테스트"의 문제가 발생하는지 여부를 체크하기 위해 사용한다.
+int i = 0;
+TEST(GoogleTest, Sample6) {
+	if (++i == 50) {
+		FAIL() << "Fail!!!";
+	}
+}
+
+// 7. 필터
+//   : 잘 정의된 이름 규칙이 필요합니다.
+//   $ ./a.out --gtest_filter=*.TestA
+//   $ ./a.out --gtest_filter=-*.TestA
+//
+//   $ ./a.out --gtest_filter=TestSuiteA.*:-*.TestA
+TEST(TestSuiteA, TestA) {}
+TEST(TestSuiteB, TestA) {}
+TEST(TestSuiteC, TestA) {}
+TEST(TestSuiteD, TestA) {}
+
+TEST(TestSuiteA, TestB) {}
+TEST(TestSuiteB, TestB) {}
+TEST(TestSuiteC, TestB) {}
+
+
+
+
+
 
 
 
