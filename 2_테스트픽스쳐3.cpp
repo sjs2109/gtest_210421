@@ -16,7 +16,7 @@ public:
 #define SPEC printf
 
 // 픽스쳐 설치하는 방법.
-//  3. 암묵적 설치(Implicit SetUp)
+//  3. 암묵적 설치/해체(Implicit SetUp / TearDown)
 //   : 여러 테스트에서 같은 테스트 픽스쳐의 코드를 SetUp() 함수에서 생성한다.
 //   => xUnit Test Framework 기능
 //   장점: 테스트 코드 중복을 제거하고, 꼭 필요하지 않은 상호작용을 캡슐화 수 있다.
@@ -33,6 +33,12 @@ protected:
 		printf("SetUp()\n");
 		calc = new Calculator();
 	}
+
+	void TearDown() override {
+		printf("TearDown\n");
+		delete calc;
+		calc = nullptr;
+	}
 };
 
 TEST_F(CalculatorTest, PressPlus_2Plus2_Display4) {
@@ -45,6 +51,10 @@ TEST_F(CalculatorTest, PressPlus_2Plus2_Display4) {
 
 	// Assert
 	ASSERT_EQ(calc->Display(), 4) << "2 + 2 하였을 때";
+
+	// Assertion이 실패하면, 이후의 코드는 수행되지 않습니다.
+	// printf("Delete Calc\n");
+	// delete calc;
 }
 
 TEST_F(CalculatorTest, Plus) {
