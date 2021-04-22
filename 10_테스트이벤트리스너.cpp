@@ -59,11 +59,24 @@ public:
 	}
 };
 
+TEST(SampleTest, foo) {
+}
+
+TEST(SampleTest, goo) {
+}
+
+TEST(SampleTest, hoo) {
+}
+
 int main(int argc, char** argv) {
 	testing::InitGoogleTest(&argc, argv);
 
 	// 리스너 등록하는 방법.
 	testing::TestEventListeners& listeners = testing::UnitTest::GetInstance()->listeners();
+
+	// 기본 프린터를 삭제하는 방법.
+	delete listeners.Release(listeners.default_result_printer());
+
 	listeners.Append(new MyTestListener);
 
 	return RUN_ALL_TESTS();
