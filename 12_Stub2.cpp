@@ -35,9 +35,18 @@ public:
 // 00시 00분에 42를 반환하는지 여부를 검증하고 싶다.
 #include <gtest/gtest.h>
 
+class StubTime : public Time {
+public:
+	std::string GetCurrentTime() override {
+		return "00:00";
+	}
+};
+
 TEST(UserTest, Display) {
-	Clock c;
+	StubTime c;
+	// Clock c;
 	User user(&c);
 
 	EXPECT_EQ(user.Display(), 42) << "00:00분에 수행하였을 때";
 }
+
