@@ -7,8 +7,8 @@ bool IsPrime(int value) {
 		}
 	}
 
-	// return true;
-	return false;
+	return true;
+	// return false;
 }
 
 #include <gtest/gtest.h>
@@ -45,8 +45,14 @@ protected:
 // INSTANTIATE_TEST_CASE_P(심볼이름, TestSuiteName, DataSet); - 1.10 이전
 // INSTANTIATE_TEST_SUITE_P(심볼이름, TestSuiteName, DatSet); - 1.10 이후
 
+using testing::Values;
+using testing::ValuesIn;
+
+int data[] = { 2, 3, 5, 7, 11, 13, 17, 19, 23 };
+
 INSTANTIATE_TEST_SUITE_P(PrimeValues, PrimeTest, 
-	testing::Values(2, 3, 5, 7, 11, 13, 17, 19, 23));
+	// Values(2, 3, 5, 7, 11, 13, 17, 19, 23));
+	ValuesIn(data));
 
 // 3. TestCase 생성
 //    TEST: 암묵적인 TestSuite class
