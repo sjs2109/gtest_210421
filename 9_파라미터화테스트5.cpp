@@ -18,6 +18,7 @@ std::vector<std::string> LoadFromFile() {
 	return result;
 }
 #endif
+// $ ./a.out < input.txt
 std::vector<std::string> LoadFromFile() {
 	std::vector<std::string> v;
 
