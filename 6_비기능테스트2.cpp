@@ -12,7 +12,8 @@
 //   2) 메모리 해지 - operator delete    - *
 // 2) 조건부 컴파일 등을 통해 테스트에서만 적용되도록 하는 것이 좋습니다.
 
-//-------
+
+#if 0
 class Image {
 public:
 #ifdef GTEST_LEAK_TEST
@@ -37,6 +38,33 @@ public:
 #ifdef GTEST_LEAK_TEST
 int Image::allocCount = 0;
 #endif
+#endif
+
+//-------
+#ifdef GTEST_LEAK_TEST					
+#define DECLARE_LEAK_TEST()					\
+public:										\
+	static int allocCount;					\
+	void* operator new(size_t size) {		\
+		++allocCount;						\
+		return malloc(size);				\
+	}										\
+	void operator delete(void* p, size_t) {	\
+		--allocCount;						\
+		free(p);							\
+	}
+#define IMPLEMENT_LEAK_TEST(classname)		\
+	int classname::allocCount = 0
+#else
+#define DECLARE_LEAK_TEST()	
+#define IMPLEMENT_LEAK_TEST(classname)
+#endif
+
+class Image {
+	DECLARE_LEAK_TEST()
+};
+
+IMPLEMENT_LEAK_TEST(Image);
 
 void DrawImage() {
 	Image* p1 = new Image; 
