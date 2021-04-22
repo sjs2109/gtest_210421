@@ -59,6 +59,20 @@ public:
 	}
 };
 
+int main(int argc, char** argv) {
+	testing::InitGoogleTest(&argc, argv);
+
+	// 리스너 등록하는 방법.
+	testing::TestEventListeners& listeners = testing::UnitTest::GetInstance()->listeners();
+	listeners.Append(new MyTestListener);
+
+	return RUN_ALL_TESTS();
+}
+
+
+
+
+
 
 
 
