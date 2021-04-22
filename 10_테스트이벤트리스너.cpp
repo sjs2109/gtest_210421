@@ -65,6 +65,10 @@ TEST(SampleTest, goo) {
 TEST(SampleTest, hoo) {
 }
 
+// libgtest.a
+//  gtest_main.o -> main -> 이전 컴파일러에서는 충돌 위험이 있습니다.
+// source.cpp -> main 
+
 int main(int argc, char** argv) {
 	testing::InitGoogleTest(&argc, argv);
 
