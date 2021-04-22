@@ -43,7 +43,7 @@ protected:
 
 // 2. DataSet 정의
 // INSTANTIATE_TEST_CASE_P(심볼이름, TestSuiteName, DataSet); - 1.10 이전
-// INSTANTIATE_TEST_SUITE_P(심볼이름, TestSuiteName, DatSet); - 1.10 이후
+// INSTANTIATE_TEST_SUITE_P(심볼이름, TestSuiteName, DataSet); - 1.10 이후
 
 using testing::Values;
 using testing::ValuesIn;

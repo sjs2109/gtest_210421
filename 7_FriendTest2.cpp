@@ -32,7 +32,7 @@ protected:
 //  => pImpl idiom(컴파일러 방화벽)은 위의 접근을 막을 수 있습니다.
 // #define class struct
 // #define private public
-// #include "User.h"
+#include "User.h"
 // #undef class
 // #undef private
 

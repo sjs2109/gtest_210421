@@ -69,7 +69,7 @@ public:
 // TDD(Test Driven Development) vs BDD(Behavior Driven Development)
 //  1. 용어적인 차이
 //    : 사람의 구어체와 유사한 형태를 권장합니다.
-//  2. 행위 기반 검증
+//  2. 행위 기반 검증 - Mockist
 
 #include <gtest/gtest.h>
 // 3A: TC를 구성하는 방법

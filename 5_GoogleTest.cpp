@@ -150,7 +150,6 @@ TEST(TestSuiteC, TestB) {}
 
 #define SPEC(message)  RecordProperty("decription", message)
 
-
 // 9. 추가적인 정보도 기록할 수 있습니다.
 TEST(GoogleTest, Sample9) {
 	SPEC("제대로 프로퍼티가 기록되는지 검증한다.");
