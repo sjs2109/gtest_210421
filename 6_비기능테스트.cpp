@@ -52,6 +52,7 @@ TEST(SampleTest, OpenFile) {
 }
 #endif
 
+// 사용자 정의 단언문
 #define EXPECT_TIMEOUT(fn, sec)									\
 	do {														\
 		time_t startTime = time(nullptr);						\
@@ -66,16 +67,3 @@ TEST(SampleTest, OpenFile) {
 	EXPECT_TIMEOUT(OpenFile(""), 1);
 	EXPECT_TIMEOUT(OpenFile(""), 1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
