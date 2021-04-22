@@ -49,8 +49,16 @@ INSTANTIATE_TEST_SUITE_P(PrimeValues, PrimeTest,
 	testing::Values(2, 3, 5, 7, 11, 13, 17, 19, 23));
 
 // 3. TestCase 생성
-//  TEST / TEST_F
-//  TEST_P를 통해 테스트 케이스를 작성해야 합니다.
+//    TEST: 암묵적인 TestSuite class
+//  TEST_F: 명시적인 TestSuite class - testing::Test
+//  TEST_P: 명시적인 TestSuite class - testing::TestWithParam<T> : GetParam()
 TEST_P(PrimeTest, IsPrime) {
 	EXPECT_TRUE(IsPrime(GetParam()));
 }
+
+
+
+
+
+
+
