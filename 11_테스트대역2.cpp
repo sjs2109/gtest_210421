@@ -6,22 +6,52 @@
 //              강한 결합: 의존하는 객체에 대해서 구체적인 타입에 의존하는 것
 // 약한 결합(느슨한 결합): 의존하는 객체에 구체적인 타입에 의존하는 것이 아니라,
 //                         인터페이스나 추상 클래스를 이용하는 것
+//                => 직접 생성하는 것이 아니라 외부에서 생성해서 전달받아야 합니다.
+//                => DI(Dependency Injection)
+//                 1) 생성자 주입
+//                  : 협력 객체가 필수적인 경우
+//                 2) 메소드 주입
+//                  : 협력 객체가 필수적이지 않은 경우
+//                -----------------
+//                의존성 주입 문제점 - 보일러플레이트
+//                  => 가난한자의 의존성 주입
+//                  => 해결 방법: 의존성 주입 프레임워크
+//                    Java: Dagger2
+//                    C++: fruit
+//                A a;
+//                B b;
+//                C c;
+//                X x(&a, &b, &c);
 
 // 틈새 만들기
+struct IFileSystem {
+	virtual ~IFileSystem() {}
 
-class FileSystem {
+	virtual bool IsValid(const std::string& filename) = 0;
+};
+
+class FileSystem : public IFileSystem {
 public:
 	virtual ~FileSystem() {}
 
-	virtual bool IsValid(const std::string& filename) {
-		// ....
+	bool IsValid(const std::string& filename) override {
 		// return true;
 		return false;
 	}
 };
 
 class Logger {
+	IFileSystem* fileSystem;
 public:
+	// SUT를 테스트 대역을 적용할 수 있는 설계로 변경하는 작업 - 틈새 만들기
+	//  => 기존의 사용법과 동일하게 만드는 것이 좋습니다.
+
+	Logger(IFileSystem* p = nullptr) : fileSystem(p) { 
+		if (fileSystem == nullptr) {
+			fileSystem = new FileSystem;
+		}
+	}
+
 	// file.log
 	//  => 확장자를 제외한 파일의 이름이 5글자 이상이어야 한다.
 	bool IsValidLogFilename(const std::string& filename) {
@@ -33,8 +63,11 @@ public:
 		}
 		//-------------------
 
-		FileSystem fileSystem;
-		return fileSystem.IsValid(filename);
+		// FileSystem fileSystem;
+		// IFileSystem* fileSystem = new FileSystem;
+		// bool result = fileSystem->IsValid(filename);
+		// delete fileSystem;
+		return fileSystem->IsValid(filename);
 	}
 };
 
