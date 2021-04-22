@@ -148,9 +148,13 @@ TEST(TestSuiteC, TestB) {}
 //   xml: test_details.xml  -> xUnit Test Framework
 //  json: test_details.json -> Google Test
 
+#define SPEC(message)  RecordProperty("decription", message)
+
 
 // 9. 추가적인 정보도 기록할 수 있습니다.
 TEST(GoogleTest, Sample9) {
+	SPEC("제대로 프로퍼티가 기록되는지 검증한다.");
+	
 	RecordProperty("cpu", "1.5");  // !
 	RecordProperty("mem", "512m"); // !
 }
