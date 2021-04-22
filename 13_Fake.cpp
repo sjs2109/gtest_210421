@@ -61,7 +61,8 @@ public:
 	}
 
 	User* LoadUser(const std::string& name) override {
-		return data[name];
+		// return data[name];
+		return nullptr;
 	}
 };
 
@@ -88,6 +89,8 @@ TEST(UserManagerTest, Load) {
 	User* actual = manager.Load(name);
 
 	// EXPECT_EQ(*actual, expected) << "Load 하였을 때";
+	ASSERT_NE(actual, nullptr);  // "Sementation Falut"로 인해 테스트가 중지되는 것을 방어한다.
+	                             //  : ASSERT_XX - 이후의 코드가 수행되지 않는다.
 	EXPECT_NE(*actual, expected);
 	// ==
 	//  : 사용자 정의 객체를 대상으로 단언문을 사용하기 위해서는
