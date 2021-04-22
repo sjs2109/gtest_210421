@@ -65,6 +65,36 @@ public:
 	}
 };
 
+static bool operator==(const User& lhs, const User& rhs) {
+	return lhs.GetName() == rhs.GetName() &&
+		lhs.GetAge() == rhs.GetAge();
+}
+static bool operator!=(const User& lhs, const User& rhs) {
+	return !(lhs == rhs);
+}
+
+static std::ostream& operator<<(std::ostream& os, const User& user) {
+	return os << "User{name=" << user.GetName() << ", age=" << user.GetAge() << "}"; 
+}
+
+TEST(UserManagerTest, Load) {
+	FakeDatabase db;
+	UserManager manager(&db);
+	std::string name = "test_name";
+	int age = 100;
+	User expected(name, age);
+	
+	manager.Save(&expected);
+	User* actual = manager.Load(name);
+
+	// EXPECT_EQ(*actual, expected) << "Load 하였을 때";
+	EXPECT_NE(*actual, expected);
+	// ==
+	//  : 사용자 정의 객체를 대상으로 단언문을 사용하기 위해서는
+	//    연산자 재정의 함수가 필요합니다.
+}
+
+
 TEST(UserManagerTest, IsExist) {
 	FakeDatabase db;
 	UserManager manager(&db);
