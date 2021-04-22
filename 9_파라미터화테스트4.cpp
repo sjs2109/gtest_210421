@@ -6,7 +6,6 @@ const char* animals[] = { "Cat", "Dog" };
 
 // "Cat" - BLACK / RED / WHITE
 // "Dog" - BLACK / RED / WHITE
-
 class AnimalTest : public testing::TestWithParam<std::tuple<const char*, Color>> {
 };
 
