@@ -23,6 +23,22 @@ bool IsPrime(int value) {
 //  testing::TestWithParam<T>
 //   T ->Input Type 
 class PrimeTest : public testing::TestWithParam<int> {
+protected:
+	void SetUp() override {
+		printf("SetUp()\n");
+	}
+
+	void TearDown() override {
+		printf("TearDown()\n");
+	}
+
+	static void SetUpTestSuite() {
+		printf("SetUpTestSuite()\n");
+	}
+
+	static void TearDownTestSuite() {
+		printf("TearDownTestSuite()\n");
+	}
 };
 
 // 2. DataSet 정의
@@ -38,16 +54,3 @@ INSTANTIATE_TEST_SUITE_P(PrimeValues, PrimeTest,
 TEST_P(PrimeTest, IsPrime) {
 	EXPECT_TRUE(IsPrime(GetParam()));
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
