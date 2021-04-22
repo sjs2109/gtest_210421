@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 
 class Engine {
@@ -18,7 +17,7 @@ public:
 
 	void Go() {
 		// ...
-		// engine->Start();
+		engine->Start();
 		// ...
 	}
 };
