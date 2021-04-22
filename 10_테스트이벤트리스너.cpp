@@ -57,7 +57,7 @@ public:
 	void OnTestEnd(const TestInfo& test_info) override {
 		printf("TestCase End: %s.%s\n", test_info.test_suite_name(), test_info.name());
 	}
-}
+};
 
 
 
