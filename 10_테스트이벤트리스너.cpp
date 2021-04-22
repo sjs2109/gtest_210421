@@ -49,13 +49,10 @@ public:
 		printf("TestCase Start:  %s.%s\n", test_info.test_suite_name(), test_info.name());
 	}
 
-	void OnTestPartResult(const TestPartResult& test_part_result) override { 
-		bool failed = test_part_result.failed();
-		printf("TestCase Result: %s\n", failed ? "FAIL" : "SUCCEED");
-	}
-
 	void OnTestEnd(const TestInfo& test_info) override {
-		printf("TestCase End: %s.%s\n", test_info.test_suite_name(), test_info.name());
+		printf("TestCase End[%s]: %s.%s\n", 
+			test_info.result()->Passed() ? "OK" : "FAILED",
+			test_info.test_suite_name(), test_info.name());
 	}
 };
 
