@@ -12,6 +12,7 @@ void OpenFile(const std::string& filename) {
 #include <gtest/gtest.h>
 
 
+#if 0
 // 방법 1. TestSuite - SetUp / TearDown를 이용하는 방법.
 class SampleTest : public testing::Test {
 protected:
@@ -38,5 +39,43 @@ TEST(SampleTest, OpenFile) {
 	OpenFile("");
 }
 #endif
+#endif
+
+// 방법 2. 시간을 측정하는 사용자 정의 단언문을 제공합니다.
+#if 0
+TEST(SampleTest, OpenFile) {
+	time_t startTime = time(nullptr);
+	OpenFile("");
+	time_t endTime = time(nullptr);
+	time_t duration = endTime - startTime;
+	EXPECT_LE(duration, 1) << "시간 초과: " << duration << "초 걸림";
+}
+#endif
+
+#define EXPECT_TIMEOUT(fn, sec)									\
+	do {														\
+		time_t startTime = time(nullptr);						\
+		fn;														\
+		time_t endTime = time(nullptr);							\
+		time_t duration = endTime - startTime;					\
+		EXPECT_LE(duration, sec) << "시간 초과: " << duration << "초 걸림"; \
+	} while (0)
+
+TEST(SampleTest, OpenFile) {
+	int startTime;
+	EXPECT_TIMEOUT(OpenFile(""), 1);
+	EXPECT_TIMEOUT(OpenFile(""), 1);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
