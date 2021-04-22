@@ -83,7 +83,6 @@ public:
 	}
 };
 
-
 TEST(LoggerTest, IsValidLogFilename_NameLoggerThan5Chars_ReturnsTrue) {
 	TestDoubleFileSystem fs;
 	Logger logger(&fs);
@@ -102,7 +101,16 @@ TEST(LoggerTest, IsValidLogFilename_NameShorterThan5Chars_ReturnsFalse) {
 	EXPECT_FALSE(logger.IsValidLogFilename(invalidFilename)) << "파일명이 다섯글자 미만일 때";
 }
 
-
+//---------- Test Double(테스트 대역)
+//  'Mock'이라는 용어로 사용되었습니다. => Mockist
+//
+//  : xUnit Test Pattern 정리
+//   Test Double
+//    1. Dummy Object => 타입
+//    2. Test Stub
+//    3. Fake Object
+//    4. Test Spy
+//    5. Mock Object
 
 
 
