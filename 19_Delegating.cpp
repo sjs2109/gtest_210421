@@ -31,9 +31,32 @@ public:
 //  - WillByDefault(Return(30));
 using testing::Return;
 
+struct FakeAdd {
+	int operator()(int a, int b) const {
+		printf("FakeAdd: %d, %d\n", a, b);
+		return a + b;
+	}
+};
+
+int _Sub(int a, int b) {
+	printf("FakeSub: %d, %d\n", a, b);
+	return a - b;
+}
+
 TEST(CalcTest, UseCalc) {
 	MockCalc mock;
-	ON_CALL(mock, Add).WillByDefault(Return(30));
+	// ON_CALL(mock, Add).WillByDefault(Return(30));
+	// ON_CALL(mock, Sub).WillByDefault(Return(10));
+	
+	// ON_CALL(mock, Add).WillByDefault(FakeAdd());
+	// ON_CALL(mock, Sub).WillByDefault(&_Sub);
+	
+	ON_CALL(mock, Add).WillByDefault([](int a, int b) {
+		return a + b;
+	});
+	ON_CALL(mock, Sub).WillByDefault([](int a, int b) {
+		return a - b;
+	});
 	
 	EXPECT_CALL(mock, Add);
 	EXPECT_CALL(mock, Sub(30, 20));
