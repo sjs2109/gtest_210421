@@ -24,11 +24,19 @@ struct Mp3 {
 //  - const: 필수
 //  - noexcept: 필수
 //  - stdcall: Windows platform(필수)
+
+// Type aliasing
+using BoolIntPair = std::pair<bool, int>;
+using IntDoubleMap = std::map<int, double>;
+
 class MockMp3 : public Mp3 {
-public: // !
+public:
+	MOCK_METHOD(bool, CheckMap, (IntDoubleMap a, bool b), (override));
+	MOCK_METHOD(BoolIntPair, GetPair, (), (const, override));
+	
 	// 템플릿 인자가 두 개 이상인 경우, 괄호가 필요합니다.
-	MOCK_METHOD(bool, CheckMap, ((std::map<int, double> a), bool b), (override));
-	MOCK_METHOD((std::pair<bool, int>), GetPair, (), (const, override));
+	// MOCK_METHOD(bool, CheckMap, ((std::map<int, double> a), bool b), (override));
+	// MOCK_METHOD((std::pair<bool, int>), GetPair, (), (const, override));
 
 	// std::string GetName() const override {}
 	MOCK_METHOD(std::string, GetName, (), (const, override));
