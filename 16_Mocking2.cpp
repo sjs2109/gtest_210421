@@ -18,7 +18,7 @@ public:
 class User {
 public:
 	void Add(Calc* p) {
-		// p->Add(10, Element{});
+		p->Add(10, Element{});
 	}
 };
 //------------------
@@ -28,11 +28,17 @@ public:
 	MOCK_METHOD(int, Add, (int times, Element x), (override));
 };
 
+// 인자 일치하는지 검증하기 위해서 필요합니다.
+bool operator==(const Element& lhs, const Element& rhs) {
+	return true;
+}
+
 TEST(UserTest, Add) {
 	User user;
 	MockCalc calc;
 
-	EXPECT_CALL(calc, Add);
+	// EXPECT_CALL(calc, Add);
+	EXPECT_CALL(calc, Add(10, Element{}));
 	
 	user.Add(&calc);
 }
