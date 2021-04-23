@@ -12,13 +12,14 @@ struct Logger {
 class User {
 public:
 	void Do(Logger* logger) {
-		// logger->Send(INFO, "user.txt", "/tmp", 42);
+		logger->Send(INFO, "user.txt", "/tmp", 42);
 	}
 };
 
 //-------------------
 #include <gmock/gmock.h>
 
+#if 0
 class MockLogger : public Logger {
 public:
 	// MOCK_METHOD(void, Send, (Level level, const char* filename, const char* dir, int line), (override));
@@ -38,20 +39,30 @@ TEST(UserTest, Do) {
 
 	user.Do(&mock);
 }
+#endif
 
-#if 0
+#if 1
 class MockLogger : public Logger {
 public:
 	MOCK_METHOD(void, Send, (Level level, const char* filename, const char* dir, int line), (override));
 };
 
+// Matcher
+using testing::_;
 
 TEST(UserTest, Do) {
 	MockLogger mock;
 	User user;
 
-	EXPECT_CALL(mock, Send(INFO, "user.txt", "/tmp", 42));
+	// 행위 기반 검증을 통해서 관심 있는 인자는 Level에 대한 인자 입니다.
+	// EXPECT_CALL(mock, Send(INFO, "user.txt", "/tmp", 42));
+	EXPECT_CALL(mock, Send(INFO, _, _, _));
 
 	user.Do(&mock);
 }
 #endif
+
+
+
+
+
