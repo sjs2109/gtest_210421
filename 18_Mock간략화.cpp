@@ -19,7 +19,7 @@ public:
 //-------------------
 #include <gmock/gmock.h>
 
-#if 0
+#if 1
 class MockLogger : public Logger {
 public:
 	// MOCK_METHOD(void, Send, (Level level, const char* filename, const char* dir, int line), (override));
@@ -41,7 +41,7 @@ TEST(UserTest, Do) {
 }
 #endif
 
-#if 1
+#if 0
 class MockLogger : public Logger {
 public:
 	MOCK_METHOD(void, Send, (Level level, const char* filename, const char* dir, int line), (override));
