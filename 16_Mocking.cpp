@@ -10,6 +10,9 @@ struct Mp3 {
 
 	virtual std::string GetName() const = 0;
 	virtual void Foo() noexcept = 0;
+
+	virtual std::pair<bool, int> GetPair() const = 0;
+	virtual bool CheckMap(std::map<int, double> a, bool b) = 0;
 };
 
 // Mocking - 테스트 대역
@@ -23,6 +26,10 @@ struct Mp3 {
 //  - stdcall: Windows platform(필수)
 class MockMp3 : public Mp3 {
 public: // !
+	// 템플릿 인자가 두 개 이상인 경우, 괄호가 필요합니다.
+	MOCK_METHOD(bool, CheckMap, ((std::map<int, double> a), bool b), (override));
+	MOCK_METHOD((std::pair<bool, int>), GetPair, (), (const, override));
+
 	// std::string GetName() const override {}
 	MOCK_METHOD(std::string, GetName, (), (const, override));
 
