@@ -128,7 +128,6 @@ void Sample4(Foo* p) {
 // => testing::InSequence
 
 using testing::InSequence;
-
 TEST(FooTest, Sample4) {
 	MockFoo mock;
 	InSequence seq; // !!
@@ -141,37 +140,27 @@ TEST(FooTest, Sample4) {
 	Sample4(&mock);
 }
 
+void Sample5(Foo* p) {
+	p->First();
+	p->Third();
+	p->Second();
+	p->Forth();
+}
 
+// First ->Second -> Forth  // seq1
+//       |
+//       ->Third            // seq2
+//  => testing::Sequence
+using testing::Sequence;
 
+TEST(FooTest, Sample5) {
+	MockFoo mock;
+	Sequence seq1, seq2;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	EXPECT_CALL(mock, First).InSequence(seq1, seq2);
+	EXPECT_CALL(mock, Second).InSequence(seq1);
+	EXPECT_CALL(mock, Third).InSequence(seq2);
+	EXPECT_CALL(mock, Forth).InSequence(seq1);
+	
+	Sample5(&mock);
+}
