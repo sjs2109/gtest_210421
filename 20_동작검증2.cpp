@@ -40,7 +40,8 @@ TEST(CalcTest, UseCalc) {
 	MockCalc mock;
 	
 	EXPECT_CALL(mock, Add)
-		.WillRepeatedly(Return(30));
+		.WillOnce(Return(10));
+		.WillRepeatedly(Return(30))
 
 	// EXPECT_CALL(mock, Sub(30, 20))
 	//	.WillOnce(Return(10));
