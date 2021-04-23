@@ -27,6 +27,9 @@ public:
 
 // 2. NiceMock
 //  => 경고를 발생시키지 않습니다.
+//
+// 3. StrictMock
+//  => 테스트가 실패합니다.
 
 #if 0
 GMOCK WARNING:
@@ -34,12 +37,13 @@ Uninteresting mock function call - returning directly.
     Function call: Say()
 #endif
 // UseUser에서 User에 대하여 Go가 제대로 호출되는지 여부를 검증하고 싶다.
-
 using testing::NiceMock;
+using testing::StrictMock;
 
 TEST(UserTest, UseUser) {
 	// MockUser mock;
-	NiceMock<MockUser> mock;
+	// NiceMock<MockUser> mock;
+	StrictMock<MockUser> mock;
 
 	EXPECT_CALL(mock, Go);
 
