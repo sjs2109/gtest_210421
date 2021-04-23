@@ -17,6 +17,8 @@ public:
 
 // ON_CALL / EXPECT_CALL 을 같이 사용하고 있다면,
 //  => ON_CALL을 사용할 필요가 없습니다.
+//  1. WillByDefault
+
 //  => EXPECT_CALL을 통해 결과를 제어하는 것이 가능합니다.
 //  1. WillOnce
 //  2. WillRepeatedly
@@ -36,12 +38,13 @@ void UseCalc(Calc* p) {
 }
 
 using testing::Return;
+using testing::AtMost;
 TEST(CalcTest, UseCalc) {
 	MockCalc mock;
 	
 	EXPECT_CALL(mock, Add)
-		.WillOnce(Return(10));
-		.WillRepeatedly(Return(30))
+		.WillOnce(Return(10))
+		.WillRepeatedly(Return(30));
 
 	// EXPECT_CALL(mock, Sub(30, 20))
 	//	.WillOnce(Return(10));
