@@ -97,6 +97,20 @@ TEST(UserManagerTest, Load) {
 	EXPECT_EQ(*actual, expected) << "Load 하였을 때";
 }
 
+TEST(UserManagerTest, Load2) {
+	NiceMock<FakeDatabase> db;
+	UserManager manager(&db);
+	std::string name = "test_name";
+	int age = 100;
+	User expected(name, age);
+
+	EXPECT_CALL(db, SaveUser);
+	EXPECT_CALL(db, LoadUser);
+	
+	manager.Save(&expected);
+	User* actual = manager.Load(name);
+}
+
 TEST(UserManagerTest, IsExist) {
 	NiceMock<FakeDatabase> db;
 	UserManager manager(&db);
@@ -108,3 +122,4 @@ TEST(UserManagerTest, IsExist) {
 
 	EXPECT_TRUE(manager.IsExist(name)) << "Save 하였을 때";
 }
+
