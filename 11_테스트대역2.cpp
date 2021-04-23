@@ -103,6 +103,7 @@ TEST(LoggerTest, IsValidLogFilename_NameShorterThan5Chars_ReturnsFalse) {
 
 //---------- Test Double(테스트 대역)
 //  'Mock'이라는 용어로 사용되었습니다. => Mockist
+//   => Google Mock
 //
 //  : xUnit Test Pattern 정리
 //   Test Double
