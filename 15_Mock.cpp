@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
 
+#include "DLoggerTarget.h"
+#if 0
 enum Level {
 	INFO, WARN, ERROR
 };
@@ -10,6 +12,7 @@ struct DLoggerTarget {
 
 	virtual void Write(Level level, const std::string& message) = 0;
 };
+#endif
 
 class FileTarget : public DLoggerTarget {
 public:
