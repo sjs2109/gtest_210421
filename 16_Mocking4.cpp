@@ -17,8 +17,11 @@ public:
 	}
 };
 
+// Class Template: 타입 추론이 불가능
+// template <typename PacketStream>
 class PacketReader {
 public:
+	// Function Template: 타입 추론이 가능합니다.
 	template <typename PacketStream>
 	void ReadPacket(PacketStream* stream, size_t packet_number) {
 		stream->AppendPacket(nullptr);
