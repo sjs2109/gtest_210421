@@ -23,14 +23,14 @@ public:
 //  1. WillOnce
 //  2. WillRepeatedly
 
-// 횟수
+// 횟수: Times 지정하지 않았을 때
 //  1. WillOnce + WillOnce + WillOnce       => Times(3)
 //  2. WillOnce + WillOnce + WillRepeatedly => Times(AtLeast(2)) 
 //  3. WillRepeatedly => Times(AnyNumber())
 
 void UseCalc(Calc* p) {
-	// printf("Add: %d\n", p->Add(10, 20));
-	// printf("Add: %d\n", p->Add(10, 20));
+	printf("Add: %d\n", p->Add(10, 20));
+	printf("Add: %d\n", p->Add(10, 20));
 	// printf("Add: %d\n", p->Add(10, 20));
 	// printf("Add: %d\n", p->Add(10, 20));
 	// printf("Add: %d\n", p->Add(10, 20));
@@ -39,16 +39,19 @@ void UseCalc(Calc* p) {
 
 using testing::Return;
 using testing::AtMost;
+using testing::AtLeast;
 TEST(CalcTest, UseCalc) {
 	MockCalc mock;
-	
+
 	EXPECT_CALL(mock, Add)
+		.Times(AtMost(3))
 		.WillOnce(Return(10))
-		.WillRepeatedly(Return(30));
+		.WillOnce(Return(10))
+		.WillOnce(Return(10));
 
 	// EXPECT_CALL(mock, Sub(30, 20))
 	//	.WillOnce(Return(10));
-	
+
 	UseCalc(&mock);
 }
 
