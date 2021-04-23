@@ -97,6 +97,22 @@ TEST(UserTest, Sample3) {
 	Sample3(&mock);
 }
 
+struct Foo {
+	virtual ~Foo() {}
+
+	virtual void First() = 0;
+	virtual void Second() = 0;
+	virtual void Third() = 0;
+	virtual void Forth() = 0;
+};
+
+class MockFoo : public Foo {
+public:
+	MOCK_METHOD
+	
+
+};
+
 
 
 
